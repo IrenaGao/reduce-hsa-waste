@@ -250,7 +250,7 @@ export default function Marketplace() {
                 <button
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  className="px-4 py-2 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition cursor-pointer"
                 >
                   Previous
                 </button>
@@ -260,7 +260,7 @@ export default function Marketplace() {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-2 rounded-lg transition ${
+                      className={`px-3 py-2 rounded-lg transition cursor-pointer ${
                         currentPage === page
                           ? 'bg-blue-600 text-white'
                           : 'text-blue-600 border border-blue-300 hover:bg-blue-50'
@@ -274,7 +274,7 @@ export default function Marketplace() {
                 <button
                   onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  className="px-4 py-2 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed transition cursor-pointer"
                 >
                   Next
                 </button>
