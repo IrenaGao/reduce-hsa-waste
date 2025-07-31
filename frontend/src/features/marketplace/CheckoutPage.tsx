@@ -147,8 +147,11 @@ export default function CheckoutPage({ service, appointmentDetails, onBack, onPr
   };
 
   const handleNext = () => {
-    if (step < 4) {
+    if (step < 3) {
       setStep(step + 1);
+    } else {
+      // Go directly to certification from step 3
+      handleSubmit();
     }
   };
 
@@ -414,65 +417,7 @@ export default function CheckoutPage({ service, appointmentDetails, onBack, onPr
     </div>
   );
 
-  const renderStep4 = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-blue-900 mb-6">Review & Confirm</h2>
-      
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-        <h3 className="text-lg font-semibold text-blue-900 mb-4">Appointment Summary</h3>
-        <div className="space-y-3">
-          <div className="flex justify-between">
-            <span className="text-gray-600">Service:</span>
-            <span className="font-medium">{service.name}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Date:</span>
-            <span className="font-medium">{appointmentDetails.date}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Time:</span>
-            <span className="font-medium">{appointmentDetails.time}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Location:</span>
-            <span className="font-medium">{service.address}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-600">Payment Method:</span>
-            <span className="font-medium">{formData.paymentMethod === 'hsa' ? 'HSA Funds' : 'Credit/Debit Card'}</span>
-          </div>
-          <div className="flex justify-between border-t pt-3">
-            <span className="text-lg font-semibold">Total:</span>
-            <span className="text-lg font-bold text-blue-800">${service.price}</span>
-          </div>
-        </div>
-      </div>
-      
-      <div className="bg-blue-50 rounded-lg p-4">
-        <h3 className="text-lg font-semibold text-blue-900 mb-4">HSA Eligibility Confirmation</h3>
-        <div className="space-y-2 text-sm">
-          <div className="flex items-center">
-            <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            This service is HSA-eligible under IRS guidelines
-          </div>
-          <div className="flex items-center">
-            <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            Payment will be processed tax-free from your HSA
-          </div>
-          <div className="flex items-center">
-            <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-            Receipt will be provided for HSA documentation
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+
 
   return (
     <div className="bg-blue-50 min-h-screen py-10 px-4 sm:px-8">
@@ -493,14 +438,14 @@ export default function CheckoutPage({ service, appointmentDetails, onBack, onPr
           
           {/* Progress Steps */}
           <div className="flex items-center justify-center mb-8">
-            {[1, 2, 3, 4].map((stepNumber) => (
+            {[1, 2, 3].map((stepNumber) => (
               <div key={stepNumber} className="flex items-center">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                   step >= stepNumber ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
                 }`}>
                   {stepNumber}
                 </div>
-                {stepNumber < 4 && (
+                {stepNumber < 3 && (
                   <div className={`w-16 h-1 mx-2 ${
                     step > stepNumber ? 'bg-blue-600' : 'bg-gray-300'
                   }`} />
@@ -515,7 +460,6 @@ export default function CheckoutPage({ service, appointmentDetails, onBack, onPr
           {step === 1 && renderStep1()}
           {step === 2 && renderStep2()}
           {step === 3 && renderStep3()}
-          {step === 4 && renderStep4()}
         </div>
 
         {/* Navigation Buttons */}
@@ -528,10 +472,10 @@ export default function CheckoutPage({ service, appointmentDetails, onBack, onPr
           </button>
           
           <button
-            onClick={step === 4 ? handleSubmit : handleNext}
+            onClick={handleNext}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
-            {step === 4 ? 'Confirm Booking' : 'Next'}
+            {step === 3 ? 'Continue to Certification' : 'Next'}
           </button>
         </div>
       </div>
