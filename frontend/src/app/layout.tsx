@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Sagas Health - HSA Wellness Platform",
   description: "Your HSA-eligible marketplace for health and wellness services in NYC",
+  icons: {
+    icon: [
+      { url: '/sagas-favicon.svg', type: 'image/svg+xml' },
+      { url: '/sagas-favicon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/sagas-favicon.svg',
+    apple: '/sagas-favicon.svg',
+  },
 };
 
 export default function RootLayout({
