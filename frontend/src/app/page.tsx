@@ -23,11 +23,11 @@ export default function Home() {
                 <p className="text-sm text-blue-600">HSA Wellness Platform</p>
               </div>
             </div>
-            
+
             {/* Navigation */}
             <nav className="flex gap-4">
               <button
-                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors cursor-pointer ${
                   view === 'marketplace' 
                     ? 'bg-blue-600 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -37,7 +37,7 @@ export default function Home() {
                 Marketplace
               </button>
               <button
-                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors cursor-pointer ${
                   view === 'dashboard' 
                     ? 'bg-blue-600 text-white shadow-md' 
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -52,7 +52,7 @@ export default function Home() {
       </header>
       <div className="py-8">
         {view === 'marketplace' ? <Marketplace /> : <Dashboard />}
-      </div>
-    </main>
+        </div>
+      </main>
   );
 }
