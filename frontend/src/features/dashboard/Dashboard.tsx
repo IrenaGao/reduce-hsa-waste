@@ -278,7 +278,7 @@ export default function Dashboard() {
               <button
                 key={timeframe}
                 onClick={() => setSelectedTimeframe(timeframe)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition cursor-pointer ${
                   selectedTimeframe === timeframe
                     ? 'bg-blue-600 text-white'
                     : 'text-blue-600 hover:bg-blue-50'
@@ -295,7 +295,7 @@ export default function Dashboard() {
           <div className="bg-white rounded-3xl shadow-lg p-6 border border-blue-100">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-blue-900">Investment Portfolio</h2>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition">
+              <button className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition cursor-pointer">
                 Trade
               </button>
             </div>
@@ -332,7 +332,7 @@ export default function Dashboard() {
           <div className="bg-white rounded-3xl shadow-lg p-6 border border-blue-100">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-blue-900">Recent Spending</h2>
-              <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+              <button className="text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer">
                 View All
               </button>
             </div>
@@ -368,22 +368,22 @@ export default function Dashboard() {
         <div className="mt-8 bg-white rounded-3xl shadow-lg p-6 border border-blue-100">
           <h2 className="text-2xl font-bold text-blue-900 mb-6">Quick Actions</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button className="bg-blue-600 text-white p-4 rounded-xl hover:bg-blue-700 transition text-center">
+            <button className="bg-blue-600 text-white p-4 rounded-xl hover:bg-blue-700 transition text-center cursor-pointer">
               <div className="text-2xl mb-2">💰</div>
               <div className="font-semibold">Contribute</div>
               <div className="text-sm opacity-90">Add funds to HSA</div>
             </button>
-            <button className="bg-green-600 text-white p-4 rounded-xl hover:bg-green-700 transition text-center">
+            <button className="bg-green-600 text-white p-4 rounded-xl hover:bg-green-700 transition text-center cursor-pointer">
               <div className="text-2xl mb-2">📈</div>
               <div className="font-semibold">Invest</div>
               <div className="text-sm opacity-90">Buy stocks/ETFs</div>
             </button>
-            <button className="bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition text-center">
+            <button className="bg-purple-600 text-white p-4 rounded-xl hover:bg-purple-700 transition text-center cursor-pointer">
               <div className="text-2xl mb-2">🏥</div>
               <div className="font-semibold">Pay Medical</div>
               <div className="text-sm opacity-90">Use HSA funds</div>
             </button>
-            <button className="bg-orange-600 text-white p-4 rounded-xl hover:bg-orange-700 transition text-center">
+            <button className="bg-orange-600 text-white p-4 rounded-xl hover:bg-orange-700 transition text-center cursor-pointer">
               <div className="text-2xl mb-2">📊</div>
               <div className="font-semibold">Reports</div>
               <div className="text-sm opacity-90">Tax documents</div>
