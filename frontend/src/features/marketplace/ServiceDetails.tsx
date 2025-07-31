@@ -155,7 +155,7 @@ export default function ServiceDetails({ service, onBack }: ServiceDetailsProps)
         {/* Back Button */}
         <button
           onClick={onBack}
-          className="mb-6 flex items-center text-blue-600 hover:text-blue-800 transition"
+          className="mb-6 flex items-center text-blue-600 hover:text-blue-800 transition cursor-pointer"
         >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -181,7 +181,27 @@ export default function ServiceDetails({ service, onBack }: ServiceDetailsProps)
           
           <div className="p-8">
             <h1 className="text-3xl font-bold text-blue-900 mb-4">{service.name}</h1>
-            <p className="text-blue-600 mb-6">{service.address}</p>
+            <p className="text-blue-600 mb-8">{service.address}</p>
+            
+            {/* Service Description */}
+            <div className="mb-12">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-l-4 border-blue-400 shadow-sm">
+                                    <p className="text-gray-700 leading-relaxed text-base">
+                      {service.category === 'MedSpa' && 
+                        "Medical spa services combine medical expertise with spa-like comfort to address aesthetic and wellness concerns. Treatments may include laser hair removal, skin rejuvenation, anti-aging procedures, and body contouring. These FDA-approved procedures are performed by licensed medical professionals in a relaxing environment. Sessions typically last 30-90 minutes depending on the treatment, with results improving over multiple sessions."
+                      }
+                      {service.category === 'Acupuncture' && 
+                        "Acupuncture involves inserting thin, sterile needles into specific points on the body to stimulate the nervous system and release natural pain-relieving chemicals. Sessions typically last 30-60 minutes and may include additional techniques like cupping or moxibustion. It's commonly used for chronic pain, stress, anxiety, and digestive issues. Most people feel minimal to no pain during treatment."
+                      }
+                      {service.category === 'Massage' && 
+                        "Therapeutic massage manipulates soft tissues to relieve muscle tension, improve circulation, and promote relaxation. Sessions range from 30-90 minutes and can include Swedish, deep tissue, sports, or hot stone techniques. Benefits include reduced muscle soreness, improved range of motion, stress relief, and better sleep. The therapist will adjust pressure based on your comfort level and specific needs."
+                      }
+                      {!['MedSpa', 'Acupuncture', 'Massage'].includes(service.category) && 
+                        "Professional wellness service designed to improve your health and well-being. Our experienced practitioners provide personalized care using proven techniques and modern equipment. Treatment duration and specific benefits vary by service type. Consult with your provider for detailed information about what to expect during your session."
+                      }
+                    </p>
+              </div>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Service Details */}
@@ -290,7 +310,7 @@ export default function ServiceDetails({ service, onBack }: ServiceDetailsProps)
                   <button
                     onClick={handleBooking}
                     disabled={!selectedDate || !selectedTime}
-                    className="w-full bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    className="w-full bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
                   >
                     Continue to Checkout
                   </button>
