@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-blue-50">
       {/* Header with Sagas Health branding */}
-      <header className="bg-white shadow-sm border-b border-blue-100">
+      <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo and Company Name */}

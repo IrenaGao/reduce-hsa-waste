@@ -164,12 +164,12 @@ export default function Marketplace() {
             placeholder="Search products/services..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border border-blue-200 rounded-full px-5 py-3 w-full sm:w-96 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
+            className="border border-blue-200 rounded-lg px-5 py-3 w-full sm:w-96 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
           />
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="border border-blue-200 rounded-full px-5 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
+            className="border border-blue-200 rounded-lg px-5 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm bg-white"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>
