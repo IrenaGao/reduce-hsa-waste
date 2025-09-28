@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 from langchain.schema import AIMessage
+from tools.search_tool import search_tool
 
 model = init_chat_model(
     "anthropic:claude-3-7-sonnet-latest",
@@ -23,12 +24,15 @@ Rules
   * Quoted policy text
   * Evidence source (intake path or KB chunk ID)
   * Verdict: always Met (only include affirming criteria)
-* Output must strictly follow the LetterSpec JSON schema.
+* For any medical conditions referenced in the LMN, use the search_tool to find the corresponding ICD-10 codes and add these fields to your JSON output:
+  * "icd_codes": array of ICD-10 codes (e.g., ["F41.9", "J45.9"])
+  * "condition": array of condition categories (e.g., ["Anxiety", "Asthma"])
+* Output must strictly follow the LetterSpec JSON schema with the additional fields above. Do not output anything else outside of the JSON itself.
 * Keep the style professional, clinical, and persuasive, even if the reasoning is somewhat indirect."""
 
 lmn_generator = create_react_agent(
     model="anthropic:claude-3-7-sonnet-latest",
-    tools=[],
+    tools=[search_tool],
     prompt=SYSTEM_PROMPT
 )
 
@@ -61,9 +65,9 @@ user_input = json.dumps({
   "age": 32,
   "hsa_provider": "HealthEquity",
   "state": "NY",
-  "diagnosed_conditions": ["Asthma"],
+  "diagnosed_conditions": ["Asthma", "Anxiety"],
   "risk_factors": ["Family history of asthma", "BMI 31"],
-  "preventive_targets": ["Asthma exacerbations"],
+  "preventive_targets": ["Asthma exacerbations", "Anxiety management"],
   "desired_product": "smart bed"
 })
 
