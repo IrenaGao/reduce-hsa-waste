@@ -56,19 +56,20 @@ IMPORTANT: You have access to a search_tool that can find relevant ICD-10 codes 
 
 Rules
 * Always generate a complete LMN even if the medical reasoning is limited or less direct. Never skip or leave sections blank.
-* Do not include binary or Base64 PDF data. Instead, provide a "pdf_render" field with clean, printable text that the backend can format into a PDF.
+* Do not include binary or Base64 PDF data.
 * Ground every claim in the provided intake data or policy excerpts when possible.
 * Leave out the physician name, signature, and date.
 * If specific supporting details are missing, make the best plausible case from the information available, while still maintaining a professional clinical tone.
-* The PolicyAlignment section must contain only those criteria and excerpts that affirm the necessity of the requested product for this patient. If few or no criteria are strongly relevant, still select the most supportive excerpts available and mark them as Met.
-* Each included criterion must show:
-  * Quoted policy text
-  * Evidence source (intake path or KB chunk ID)
-  * Verdict: always Met (only include affirming criteria)
 * For any medical conditions referenced in the LMN, use the search_tool to find the corresponding ICD-10 codes and add these fields to your JSON output:
   * "icd_codes": array of ICD-10 codes (e.g., ["F41.9", "J45.9"])
   * "condition": array of condition categories (e.g., ["Anxiety", "Asthma"])
 * Output must strictly follow the LetterSpec JSON schema with the additional fields above. Do not output anything else outside of the JSON itself.
+* Only include the following four fields in your output: treatment, clinical rationale, role that the service plays in helping with the patient's health, and conclusion
+* In the clinical rationale section, reference at least one published study by their PMID and abbreviated citation that justifies the service to be clinically necessary for the treatment.
+* In the conclusion, end with "medically necessary as part of the patient's comprehensive treatment plan."
+* If a treatment time frame is mentioned, use the phrasing "as part of the management plan for 12 months."
+* In the treatment section only and no other fields, elaborate on an actual exercise or treatment regime.
+* Keep the information within one page.
 * Keep the style professional, clinical, and persuasive, even if the reasoning is somewhat indirect.`;
 
 // Create a simple tool wrapper for searchTool
@@ -132,10 +133,10 @@ export async function testLMNGenerator(): Promise<void> {
     age: 32,
     hsa_provider: "HealthEquity",
     state: "NY",
-    diagnosed_conditions: ["Asthma", "Anxiety"],
-    risk_factors: ["Family history of asthma", "BMI 31"],
-    preventive_targets: ["Asthma exacerbations", "Anxiety management"],
-    desired_product: "smart bed"
+    diagnosed_conditions: ["stress"],
+    risk_factors: [""],
+    preventive_targets: ["stress"],
+    desired_product: "pilates"
   });
 
   try {

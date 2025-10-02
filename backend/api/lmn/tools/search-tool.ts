@@ -89,4 +89,4 @@ export async function searchTool(query: string, topK: number = 5): Promise<Searc
   }
 }
 
-searchTool("heart disease").then(console.log)
+searchTool("heart disease")
